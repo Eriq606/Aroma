@@ -6,3 +6,5 @@
 * 30mn20
 # Insertion dans la base de AjoutRessource
 * 21mn43
+# Redirection servlet plantation
+* 16mn20
