@@ -42,7 +42,8 @@ public class Fournisseur {
             connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
             opened=true;
         }
-        PreparedStatement statemnt=connect.prepareStatement("select * from fournisseur");
+        PreparedStatement statemnt=connect.prepareStatement("select "+Constantes.col_id_fournisseur+", "+Constantes.col_description_fournisseur+", "+
+                                                                Constantes.col_contact_fournisseur+" from "+Constantes.table_fournisseur);
         try {
             ArrayList<Fournisseur> fournisseurs=new ArrayList<Fournisseur>();
             ResultSet results=statemnt.executeQuery();
@@ -68,7 +69,7 @@ public class Fournisseur {
             connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
             opened=true;
         }
-        PreparedStatement statemnt=connect.prepareStatement("select * from fournisseur where id=?");
+        PreparedStatement statemnt=connect.prepareStatement("select "+Constantes.col_id_fournisseur+", "+Constantes.col_description_fournisseur+", "+Constantes.col_contact_fournisseur+" from "+Constantes.table_fournisseur+" where id=?");
         statemnt.setInt(0, id);
         try {
             ResultSet result=statemnt.executeQuery();
@@ -95,7 +96,7 @@ public class Fournisseur {
             connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
             opened=true;
         }
-        PreparedStatement statemnt=connect.prepareStatement("select * from fournisseur where id=?");
+        PreparedStatement statemnt=connect.prepareStatement("select "+Constantes.col_description_fournisseur+", "+Constantes.col_contact_fournisseur+" from "+Constantes.table_fournisseur+" where id=?");
         statemnt.setInt(0, getId());
         try {
             ResultSet result=statemnt.executeQuery();

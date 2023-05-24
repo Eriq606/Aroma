@@ -16,7 +16,9 @@ public class ProduitIntermediaire extends Produit{
             connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
             opened=true;
         }
-        PreparedStatement statemnt=connect.prepareStatement("select * from v_liste_produit_intermediaire");
+        PreparedStatement statemnt=connect.prepareStatement("select "+Constantes.col_id_produit+", "+Constantes.col_nom_produit+", "+
+                                                                Constantes.col_id_type+", "+Constantes.col_nom_type+", "+
+                                                                Constantes.col_id_unite+", "+Constantes.col_nom_unite+" from "+Constantes.view_produitIntermediaire);
         try{
             ArrayList<ProduitIntermediaire> produits=new ArrayList<ProduitIntermediaire>();
             ResultSet results=statemnt.executeQuery();
@@ -40,6 +42,25 @@ public class ProduitIntermediaire extends Produit{
             if(opened){
                 connect.close();
             }
+        }
+    }
+    public void getProduitIntermediaireById(Connection connex) throws Exception{
+        Connection connect=connex;
+        boolean opened=false;
+        if(connect==null){
+            connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
+            opened=true;
+        }
+        String[] colonnes={"nom", "contact"};
+        PreparedStatement statemnt=connect.prepareStatement("select nom,  from "+Constantes.view_produitIntermediaire+" where id=?");
+        statemnt.setInt(0,getId());
+        try{
+            ResultSet result=statemnt.executeQuery();
+            if(result.next()){
+                setNom(result.getString(1));
+            }
+        }finally{
+
         }
     }
 }
