@@ -9,9 +9,7 @@ import utils.Constantes;
 import utils.MaConnection;
 import utils.exceptions.RessourceNonExistantException;
 
-public class Ressource {
-    private int id;
-    private String nom;
+public class Ressource extends Produit {
     public int getId() {
         return id;
     }
@@ -35,7 +33,7 @@ public class Ressource {
             connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
             opened=true;
         }
-        PreparedStatement statemnt=connect.prepareStatement("select * from ressource");
+        PreparedStatement statemnt=connect.prepareStatement("select * from v_liste_ressource");
         try {
             ArrayList<Ressource> ressources=new ArrayList<Ressource>();
             ResultSet results=statemnt.executeQuery();
@@ -60,7 +58,7 @@ public class Ressource {
             connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
             opened=true;
         }
-        PreparedStatement statemnt=connect.prepareStatement("select * from ressource where id=?");
+        PreparedStatement statemnt=connect.prepareStatement("select * from v_liste_ressource where id=?");
         statemnt.setInt(0, id);
         try {
             ResultSet result=statemnt.executeQuery();
