@@ -1,7 +1,12 @@
 package assets;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
 
+import utils.Constantes;
+import utils.MaConnection;
 import utils.exceptions.QuantiteNegativeException;
 
 public class AjoutRessource {
@@ -59,8 +64,16 @@ public class AjoutRessource {
         setQuantite(realQuantite);
     }
 
+    public double getPrixAchat(){
+        return getPrixUnitaire()*getQuantite();
+    }
+
     public LocalDate getDate() {
         return date;
+    }
+    public Date getUtilsDate(){
+        Date realDate=Date.valueOf(getDate());
+        return realDate;
     }
     public void setDate(LocalDate date) {
         this.date = date;
@@ -68,5 +81,34 @@ public class AjoutRessource {
     public void setDate(String dateString){
         LocalDate realDate=LocalDate.parse(dateString);
         setDate(realDate);
+    }
+    public boolean insert(Connection connex) throws Exception{
+        Connection connect=connex;
+        boolean opened=false;
+        if(connect==null){
+            connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
+            opened=true;
+        }
+        PreparedStatement statemnt=connect.prepareStatement("insert into mouvementproduit values(default,?,'?',?,0,?,null,?)");
+        statemnt.setInt(0,getRessource().getId());
+        statemnt.setDate(1, getUtilsDate());
+        statemnt.setDouble(2, getQuantite());
+        statemnt.setDouble(3, getPrixAchat());
+        statemnt.setInt(4, getFournisseur().getId());
+        try {
+            statemnt.executeUpdate();
+            if(opened){
+                connect.commit();
+            }
+            return true;
+        } catch (Exception e) {
+            connect.rollback();
+            throw e;
+        }finally{
+            statemnt.close();
+            if(opened){
+                connect.close();
+            }
+        }
     }
 }
