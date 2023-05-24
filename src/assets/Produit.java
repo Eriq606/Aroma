@@ -11,6 +11,10 @@ public class Produit {
     public void setId(int id) {
         this.id = id;
     }
+    public void setId(String idstring){
+        int ids=Integer.parseInt(idstring);
+        setId(ids);
+    }
     public String getNom() {
         return nom;
     }

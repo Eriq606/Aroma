@@ -89,7 +89,7 @@ public class AjoutRessource {
             connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
             opened=true;
         }
-        PreparedStatement statemnt=connect.prepareStatement("insert into mouvementproduit values(default,?,'?',?,0,?,null,?)");
+        PreparedStatement statemnt=connect.prepareStatement("insert into "+Constantes.table_mouvement_produit+" values(default,?,'?',?,0,?,null,?)");
         statemnt.setInt(0,getRessource().getId());
         statemnt.setDate(1, getUtilsDate());
         statemnt.setDouble(2, getQuantite());
