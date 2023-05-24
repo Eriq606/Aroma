@@ -33,8 +33,13 @@ public class ConfirmAjoutRessourceServlet extends HttpServlet{
             ajout.setQuantite(quantite);
             ajout.setDate(date);
             ajout.setPrixUnitaire(prixUnitaire);
+            ajout.insert(null);
+            String path="";
+            resp.sendRedirect(path);
         }catch(Exception e){
             e.printStackTrace();
+            String pathRetour="";
+            resp.sendRedirect(pathRetour);
         }
     }
 }
