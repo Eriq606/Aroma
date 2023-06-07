@@ -11,4 +11,4 @@
 # Refactorisation avec les constantes
 * 39mn54
 # Controle de valeur plantation
-* 15mn
+* 28mn34
