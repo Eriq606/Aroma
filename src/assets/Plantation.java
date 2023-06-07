@@ -1,6 +1,7 @@
 package assets;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -65,6 +66,29 @@ public class Plantation {
                 }
             }
             return true;
+        }finally{
+            if(opened){
+                connect.close();
+            }
+        }
+    }
+    public void insert(Connection connex) throws Exception{
+        Connection connect=connex;
+        boolean opened=false;
+        if(connect==null){
+            connect=MaConnection.getConnection(Constantes.database, Constantes.username, Constantes.password);
+            opened=true;
+        }
+        try{
+            UtilisationRessource utilisation=new UtilisationRessource();
+            utilisation.setUtilisationByPlantation(this);
+            utilisation.insert(connect);
+            if(opened){
+                connect.commit();
+            }
+        }catch(Exception e){
+            connect.rollback();
+            throw e;
         }finally{
             if(opened){
                 connect.close();

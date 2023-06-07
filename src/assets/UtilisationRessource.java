@@ -33,6 +33,7 @@ public class UtilisationRessource {
         setUtilisation(new HashMap<Ressource,Double>());
     }
     public void setUtilisationByPlantation(Plantation plantation){
+        setDate(plantation.getDate());
         for(Map.Entry<Ressource,Double> entry:plantation.getProduit().getRecette().getRecette().entrySet()){
             getUtilisation().put(entry.getKey(), entry.getValue()*plantation.getQuantite());
         }
