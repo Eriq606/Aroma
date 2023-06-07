@@ -1,0 +1,33 @@
+Caisse :
+    Date date;
+    double valeur;
+
+    ✔ static Caisse getDefaultCaisseNow(){ @done(23-06-07 19:41)
+
+Recherche :
+    Date date_debut;
+    Date date_fin;
+
+    // date debut <= date fin
+
+RechercheReport extends Recherche:
+    Report[] liste;
+    //si datefin et datedebut null de toade izy rehetra ny apotra
+    ✔ public Report[] getAllTransaction(){ @done(23-06-07 20:02)
+        
+RechercheTransaction extends Recherche:
+    Transaction[] liste;
+    ✔ public Transaction[] getAllTransaction(){ @done(23-06-07 20:25)
+        
+Report:
+    Date date;
+    double valeur;
+    ✔ Transaction[] liste_Transactions; @done(23-06-07 20:43)
+    ✔ static Report dernierReport(  ){ @done(23-06-07 20:43)
+Transaction :
+    int numero_transaction;
+    String description;
+    Date date;
+    double entree;
+    double sortie; 
+    ✘ Transaction[] getListeTransation(){ @cancelled(23-06-07 20:44)

@@ -1,0 +1,3 @@
+create or replace view v_dernier_report as SELECT valeur, date_report FROM report WHERE EXISTS (SELECT 1 FROM report) and date_report=(select max(date_report) from report) UNION ALL SELECT 0, NOW() WHERE NOT EXISTS (SELECT 1 FROM report);
+
+create or replace view v_caisse_now as select valeur+(select coalesce(sum(entree-sortie), 0) from transaction where date_transaction>(select date_report from v_dernier_report)) as valeur from v_dernier_report;
