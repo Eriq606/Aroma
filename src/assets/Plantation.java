@@ -1,7 +1,6 @@
 package assets;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.util.Map;
 
