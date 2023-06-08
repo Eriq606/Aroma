@@ -1,0 +1,9 @@
+ReportEntreeAjoutServlet:
+    ☐ Caisse default = Caisse.getDefaultCaisseNow()
+    ☐ Report dernier = Report.dernierReport()
+
+ListeTransactionServlet:
+    ☐ RechercheTransaction r =new Transaction(debut,fin);
+
+ListeReportServlet:
+    ☐ RechercheReport report = new RechercheReport(debut,fin)

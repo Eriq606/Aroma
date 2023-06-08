@@ -1,0 +1,14 @@
+Tables:
+    ☐ Report: id_report serial primary key, valeur numeric, date_report timestamp
+    ☐ Transaction: numero_transaction serial primary key, description,date timestamp,entree numeric, sortie numeric 
+
+v_dernier_report: 
+    ->dernier report
+    ☐ date
+    ☐ valeur
+
+v_caisse_now:
+    ->valeur de la caisse maintenant (valeur dernier report + somme transactions depuis le dernier report)
+    ☐ valeur
+
+AVERINA: image base, script sql creation de tables, script sql vues, script sql donnees matotra 
